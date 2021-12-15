@@ -15,6 +15,8 @@ func CreateRoom(log logging.Logger, repo repos.Room) http.HandlerFunc {
 	}
 }
 
+// PROTOTYPE NOTE: regardless of given room id, player list
+// will always be the same.
 func RoomPlayers(log logging.Logger, repo repos.Room) http.HandlerFunc {
 	return func(rw http.ResponseWriter, r *http.Request) {}
 }

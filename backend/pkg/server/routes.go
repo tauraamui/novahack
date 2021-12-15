@@ -35,7 +35,7 @@ func (s *Server) mapRoutes(l log.Logger, version string) {
 
 	for _, v := range versionedRoutes(l, s.roomRepo)[version] {
 		l.Info().Msgf("Mapping route %s [%s]", v.method, v.endpoint)
-		s.router.Method(v.method, v.endpoint, v.handler)
+		s.router.Method(v.method, APIv1+"/"+v.endpoint, v.handler)
 	}
 	// s.router.Method("/", "GET", func(rw http.ResponseWriter, r *http.Request) {})
 }
