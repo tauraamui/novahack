@@ -1,6 +1,6 @@
 package models
 
 type Room struct {
-	GUID    string
+	UUID    string
 	Players []Player
 }

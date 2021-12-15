@@ -3,6 +3,7 @@ package repos
 import (
 	"fmt"
 
+	"github.com/google/uuid"
 	"github.com/novahack/backend/pkg/database"
 	"github.com/novahack/backend/pkg/database/models"
 )
@@ -11,6 +12,7 @@ const idKeyPrefix = "room:"
 
 type Room interface {
 	Create() string
+	Players(string) ([]models.Player, error)
 }
 
 type roomRepo struct {
@@ -24,7 +26,30 @@ func NewRoomRepo(db database.DBConn) Room {
 }
 
 func (r *roomRepo) Create() string {
-	return r.db.Create(idKeyPrefix, models.Room{})
+	return r.db.Create(idKeyPrefix, models.Room{
+		Players: []models.Player{
+			{
+				UUID:  uuid.NewString(),
+				Name:  "First Player",
+				Stake: 350,
+			},
+			{
+				UUID:  uuid.NewString(),
+				Name:  "Second Player",
+				Stake: 400,
+			},
+			{
+				UUID:  uuid.NewString(),
+				Name:  "Third Player",
+				Stake: 50,
+			},
+			{
+				UUID:  uuid.NewString(),
+				Name:  "Fourth Player",
+				Stake: 900,
+			},
+		},
+	})
 }
 
 func (r *roomRepo) Players(id string) ([]models.Player, error) {

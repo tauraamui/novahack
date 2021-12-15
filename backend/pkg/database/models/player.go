@@ -1,7 +1,7 @@
 package models
 
 type Player struct {
-	GUID  string
-	Name  string
-	Stake float64
+	UUID  string `json:"uuid"`
+	Name  string `json:"name"`
+	Stake int    `json:"stake"`
 }

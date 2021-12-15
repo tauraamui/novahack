@@ -6,12 +6,12 @@ type db map[string]interface{}
 
 func (m db) Create(keyPrefix string, v interface{}) string {
 	id := uuid.NewString()
-	m[id+keyPrefix] = v
+	m[keyPrefix+id] = v
 	return id
 }
 
-func (m db) Find(id string) interface{} {
-	return m[id]
+func (m db) Find(keyPrefix, id string) interface{} {
+	return m[keyPrefix+id]
 }
 
 func (m db) Close() error {
