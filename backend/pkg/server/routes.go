@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/novahack/backend/pkg/database/repos"
@@ -34,8 +35,9 @@ func (s *Server) mapRoutes(l log.Logger, version string) {
 	l.Info().Msg("Mapping routes...")
 
 	for _, v := range versionedRoutes(l, s.roomRepo)[version] {
-		l.Info().Msgf("Mapping route %s [%s]", v.method, v.endpoint)
-		s.router.Method(v.method, APIv1+"/"+v.endpoint, v.handler)
+		endpoint := fmt.Sprintf("/%s%s", version, v.endpoint)
+		l.Info().Msgf("Mapping route %s [%s]", v.method, endpoint)
+		s.router.Method(v.method, endpoint, v.handler)
 	}
 	// s.router.Method("/", "GET", func(rw http.ResponseWriter, r *http.Request) {})
 }
