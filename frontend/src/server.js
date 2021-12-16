@@ -1,18 +1,6 @@
-import { createServer, Model } from "miragejs";
+import { createServer } from "miragejs";
 
 createServer({
-  models: {
-    user: Model,
-    room: Model,
-  },
-
-  seeds(server) {
-    server.create("room", { id: "abc123" });
-    server.create("user", { uuid: "abc", name: "Joe Doe" });
-    server.create("user", { uuid: "cba", name: "Foo Bar" });
-    server.create("user", { uuid: "aaa", name: "Ronaldo" });
-  },
-
   routes() {
     this.namespace = "api";
 
@@ -21,9 +9,34 @@ createServer({
       return roomId;
     });
 
-    this.get("/room", (schema) => {
-      const participants = schema.user.all();
-      return participants;
+    this.get("/room", () => {
+      return [
+        {
+          uuid: 1,
+          img: "/images/avatar/1.jpg",
+          name: "Remy Sharp",
+        },
+        {
+          uuid: 2,
+          img: "/images/avatar/2.jpg",
+          name: "Travis Howard",
+        },
+        {
+          uuid: 3,
+          img: "/images/avatar/3.jpg",
+          name: "Cindy Baker",
+        },
+        {
+          uuid: 4,
+          img: "/images/avatar/4.jpg",
+          name: "Agnes Walker",
+        },
+        {
+          uuid: 5,
+          img: "/images/avatar/5.jpg",
+          name: "Trevor Henderson",
+        },
+      ];
     });
   },
 });
