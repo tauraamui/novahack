@@ -28,6 +28,11 @@ var versionedRoutes = func(log log.Logger, roomRepo repos.Room) RouteCollection 
 				handler:  handlers.CreateRoom(log, roomRepo),
 			},
 			{
+				endpoint: "/room/{uuid}/start-game",
+				method:   "PUT",
+				handler:  handlers.CreateRoom(log, roomRepo),
+			},
+			{
 				endpoint: "/room/{uuid}/players",
 				method:   "GET",
 				handler:  handlers.RoomPlayers(log, roomRepo),

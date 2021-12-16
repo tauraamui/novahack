@@ -1,8 +1,9 @@
 package database
 
 type DBConn interface {
-	Create(string, interface{}) string
-	Find(string) interface{}
+	Create(string, Entry) string
+	Find(string) Entry
+	Replace(Entry)
 	Close() error
 }
 

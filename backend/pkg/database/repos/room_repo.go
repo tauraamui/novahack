@@ -2,31 +2,33 @@ package repos
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/google/uuid"
 	"github.com/novahack/backend/pkg/database"
 	"github.com/novahack/backend/pkg/database/models"
 )
 
-const idKeyPrefix = "room:"
-
 type Room interface {
 	Create() string
+	StartTimer(string) (int64, error)
 	Players(string) ([]models.Player, error)
 }
 
 type roomRepo struct {
-	db database.DBConn
+	idKeyPrefix string
+	db          database.DBConn
 }
 
 func NewRoomRepo(db database.DBConn) Room {
 	return &roomRepo{
+		"room:",
 		db,
 	}
 }
 
 func (r *roomRepo) Create() string {
-	return r.db.Create(idKeyPrefix, models.Room{
+	return r.db.Create(r.idKeyPrefix, models.Room{
 		Players: []models.Player{
 			{
 				UUID:  uuid.NewString(),
@@ -50,6 +52,17 @@ func (r *roomRepo) Create() string {
 			},
 		},
 	})
+}
+
+func (r *roomRepo) StartTimer(id string) (int64, error) {
+	whenTimerWillStart := time.Now().Add(time.Second * 10).Unix()
+	if room, ok := r.db.Find(id).(models.Room); ok {
+		room.TimerStartTime = whenTimerWillStart
+		r.db.Replace(room)
+	} else {
+		return 0, fmt.Errorf("unable to find room of ID: %s", id)
+	}
+	return whenTimerWillStart, nil
 }
 
 func (r *roomRepo) Players(id string) ([]models.Player, error) {
