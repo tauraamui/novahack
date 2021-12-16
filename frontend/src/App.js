@@ -1,12 +1,14 @@
+import { Routes, Route } from "react-router-dom";
+import { Home } from "./components/Home";
 
-function App() {
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        Meta betting
-      </header>
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/room" element={<h1>Create new room page</h1>} />
+        <Route path="/room/:id" element={<h1>Room id: </h1>} />
+      </Routes>
     </div>
   );
-}
-
-export default App;
+};
