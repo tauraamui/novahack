@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { LabelButton } from "../components/LabelButton";
 
 export const Home = () => {
   return (
@@ -6,7 +7,7 @@ export const Home = () => {
       <h1>Meta betting</h1>
 
       <Link to="/room">
-        <button>Create new event</button>
+        <LabelButton text="Create new event" />
       </Link>
     </div>
   );
