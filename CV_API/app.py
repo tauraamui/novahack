@@ -12,15 +12,14 @@ import numpy as np
 app = Flask(__name__)
 
 
-@app.route("/get_predictions", methods=['GET'])
-def predict():
+@app.route("/get_predictions/<image_num>", methods=['GET'])
+def predict(image_num):
     def load_model():
         data_augmentation = keras.Sequential([
             layers.RandomFlip("horizontal", input_shape=(180, 180, 3)),
             layers.RandomRotation(0.1),
             layers.RandomZoom(0.1),
         ])
-
         num_classes = 4
         my_model = Sequential([
             data_augmentation,
@@ -46,10 +45,11 @@ def predict():
         return my_model
 
     try:
+        image_num = request.view_args['image_num']
         class_names = ['backpack', 'binoculars', 'calculator', 'flashlight']
         model = load_model()
 
-        img = tf.keras.utils.load_img('CV_API/data/backpack_test.jpg',
+        img = tf.keras.utils.load_img(f'CV_API/data/{image_num}.jpg',
                                       target_size=(180, 180))
 
         img_array = tf.keras.utils.img_to_array(img)
