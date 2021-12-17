@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Webcam from "react-webcam";
 import { LabelButton } from "./LabelButton";
 
@@ -9,12 +10,17 @@ const videoConstraints = {
 };
 
 export const Capture = () => {
+  const navigate = useNavigate();
   const webcamRef = React.useRef(null);
 
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
     console.log(imageSrc);
   }, [webcamRef]);
+
+  const handleCapture = () => {
+    navigate("result");
+  };
 
   return (
     <>
@@ -26,7 +32,7 @@ export const Capture = () => {
         width={640}
         videoConstraints={videoConstraints}
       />
-      <LabelButton onClick={capture} text="Capture photo" />
+      <LabelButton onClick={handleCapture} text="Capture photo" />
     </>
   );
 };

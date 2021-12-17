@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { api } from "../api";
 import { LabelButton } from "../components/LabelButton";
+import { StopWatch } from "../components/StopWatch";
 
 export const Game = () => {
   const navigate = useNavigate();
@@ -14,6 +14,8 @@ export const Game = () => {
       <h1>Find the item below</h1>
 
       <p>Spoon</p>
+
+      <StopWatch />
 
       <LabelButton onClick={handleNewEvent} text="Found item" />
     </div>
