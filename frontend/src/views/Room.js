@@ -19,7 +19,7 @@ export const Room = () => {
   };
 
   const handlePlay = () => {
-    console.log("foo");
+    navigate("game");
   };
 
   useEffect(() => {

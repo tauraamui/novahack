@@ -1,9 +1,10 @@
 import React from "react";
 import Webcam from "react-webcam";
+import { LabelButton } from "./LabelButton";
 
 const videoConstraints = {
-  width: 1280,
-  height: 720,
+  width: 640,
+  height: 480,
   facingMode: "user",
 };
 
@@ -19,13 +20,13 @@ export const Capture = () => {
     <>
       <Webcam
         audio={false}
-        height={720}
+        height={480}
         ref={webcamRef}
         screenshotFormat="image/jpeg"
-        width={1280}
+        width={640}
         videoConstraints={videoConstraints}
       />
-      <button onClick={capture}>Capture photo</button>
+      <LabelButton onClick={capture} text="Capture photo" />
     </>
   );
 };

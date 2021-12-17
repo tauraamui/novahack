@@ -6,7 +6,8 @@ createServer({
 
     this.post("/room", () => {
       const roomId = Math.floor(Math.random() * 1000);
-      return roomId;
+      const playerId = 1;
+      return { admin: playerId, room: roomId };
     });
 
     this.get("/room", () => {

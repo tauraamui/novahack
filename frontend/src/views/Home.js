@@ -7,7 +7,7 @@ export const Home = () => {
 
   const handleNewEvent = async () => {
     const response = await api.post("room");
-    const roomId = response.data;
+    const roomId = response.data.room;
     navigate(`/room/${roomId}`);
   };
 
