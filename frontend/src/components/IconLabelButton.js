@@ -1,10 +1,12 @@
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import LinkIcon from "@mui/icons-material/Link";
 
 const buttonIcons = {
   add: <AddCircleIcon />,
   edit: <EditIcon />,
+  link: <LinkIcon />,
 };
 
 export const IconLabelButton = ({ iconName, text, ...props }) => {
