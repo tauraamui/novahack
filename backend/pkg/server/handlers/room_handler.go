@@ -76,6 +76,12 @@ func StartTimer(log logging.Logger, repo repos.Room) http.HandlerFunc {
 	}
 }
 
+func ImageConfidence(log logging.Logger) http.HandlerFunc {
+	return func(rw http.ResponseWriter, r *http.Request) {
+
+	}
+}
+
 // PROTOTYPE NOTE: regardless of given room id, player list
 // will always be the same but the id of the room does need to exist
 func RoomPlayers(log logging.Logger, repo repos.Room) http.HandlerFunc {

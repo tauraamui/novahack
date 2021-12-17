@@ -33,6 +33,11 @@ var versionedRoutes = func(log log.Logger, roomRepo repos.Room) RouteCollection 
 				handler:  handlers.StartTimer(log, roomRepo),
 			},
 			{
+				endpoint: "/image-confidence",
+				method:   "GET",
+				handler:  handlers.ImageConfidence(log),
+			},
+			{
 				endpoint: "/room/{uuid}/players",
 				method:   "GET",
 				handler:  handlers.RoomPlayers(log, roomRepo),
