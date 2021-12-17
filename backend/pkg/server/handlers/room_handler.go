@@ -5,16 +5,14 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/novahack/backend/pkg/database/models"
 	"github.com/novahack/backend/pkg/database/repos"
 	"github.com/novahack/backend/pkg/logging"
 )
 
 func CreateRoom(log logging.Logger, repo repos.Room) http.HandlerFunc {
 	type data struct {
-		ID      string          `json:"id"`
-		You     string          `json:"your-player-id"`
-		Players []models.Player `json:"players"`
+		ID  string `json:"id"`
+		You string `json:"your-player-id"`
 	}
 	type respBody struct {
 		Data  data
@@ -38,9 +36,8 @@ func CreateRoom(log logging.Logger, repo repos.Room) http.HandlerFunc {
 
 		writeJSONResp(rw, respBody{
 			data{
-				ID:      roomID,
-				You:     roomPlayers[0].UUID,
-				Players: roomPlayers,
+				ID:  roomID,
+				You: roomPlayers[0].UUID,
 			},
 			"",
 		})

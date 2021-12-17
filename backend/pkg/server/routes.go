@@ -30,7 +30,7 @@ var versionedRoutes = func(log log.Logger, roomRepo repos.Room) RouteCollection 
 			{
 				endpoint: "/room/{uuid}/start-game",
 				method:   "PUT",
-				handler:  handlers.CreateRoom(log, roomRepo),
+				handler:  handlers.StartTimer(log, roomRepo),
 			},
 			{
 				endpoint: "/room/{uuid}/players",
